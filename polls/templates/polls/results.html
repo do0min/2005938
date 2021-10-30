@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+</head>
+<p></p>
+
+<body>
+  <h1>{{question.question_text}}</h1>
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <li>{{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+</body>
+<p></p>
+<div class = "btn-group">
+    <a href="{% url 'polls:index' %}" class="btn btn-info">Go HOME</a>
+</div>
+</html>
